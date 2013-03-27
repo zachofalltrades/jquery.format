@@ -1,4 +1,4 @@
-/**
+/*
 * format - jQuery plugin to pretty-print or minify text in XML, JSON, CSS and SQL formats.
 * https://github.com/zachofalltrades/jquery.format
 * 
@@ -27,7 +27,7 @@
 			space = new Array(step + 1).join(' '); //space is result of join (a string), not an array
 		}
 		var shift = ['\n']; // array of shifts
-		for(ix=0;ix<100;ix++){
+		for(var ix=0;ix<100;ix++){
 			shift.push(shift[ix]+space); 
 		}
 		return shift;
@@ -96,7 +96,7 @@
 		//TODO - if options object maps any functions, add them as appropriately named methods
 		var methodName = this.options.method;
 		if (!$.isFunction(this[methodName])) {
-			$.error("'" + methodName + "' is not a Formatter method.")
+			$.error("'" + methodName + "' is not a Formatter method.");
 		};
 		this.format = function(text) { //alias to currently selected method
 			return this[this.options.method].call(this, text);
@@ -232,8 +232,6 @@
 				ar = [],
 				deep = 0,
 				tab = this.step,//+this.step,
-				inComment = true,
-				inQuote = false,
 				parenthesisLevel = 0,
 				str = '',
 				ix = 0;
@@ -252,11 +250,11 @@
 					parenthesisLevel = isSubquery(ar[ix], parenthesisLevel);
 					
 					if( /\s{0,}\s{0,}SELECT\s{0,}/.exec(ar[ix]))  { 
-						ar[ix] = ar[ix].replace(/\,/g,",\n"+tab+tab+"")
+						ar[ix] = ar[ix].replace(/\,/g,",\n"+tab+tab+"");
 					} 
 					
 					if( /\s{0,}\s{0,}SET\s{0,}/.exec(ar[ix]))  { 
-						ar[ix] = ar[ix].replace(/\,/g,",\n"+tab+tab+"")
+						ar[ix] = ar[ix].replace(/\,/g,",\n"+tab+tab+"");
 					} 
 					
 					if( /\s{0,}\(\s{0,}SELECT\s{0,}/.exec(ar[ix]))  { 
@@ -275,7 +273,6 @@
 							deep--;
 						}
 					} 
-					var junk = 0;
 				}
 		
 				str = str.replace(/^\n{1,}/,'').replace(/\n{1,}/g,"\n");
@@ -295,13 +292,13 @@
 		},
 
 		cssmin: function(text) {
-			var str = this.preserveComments ? text : text.replace(/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\//g,"") ;
-			return str.replace(/\s{1,}/g,' ')
-					  .replace(/\{\s{1,}/g,"{")
-					  .replace(/\}\s{1,}/g,"}")
-					  .replace(/\;\s{1,}/g,";")
-					  .replace(/\/\*\s{1,}/g,"/*")
-					  .replace(/\*\/\s{1,}/g,"*/");
+//			var str = this.preserveComments ? text : text.replace(/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+\//g,"") ;
+//			return str.replace(/\s{1,}/g,' ')
+//					  .replace(/\{\s{1,}/g,"{")
+//					  .replace(/\}\s{1,}/g,"}")
+//					  .replace(/\;\s{1,}/g,";")
+//					  .replace(/\/\*\s{1,}/g,"/*")
+//					  .replace(/\*\/\s{1,}/g,"*/");
 		},
 
 		sqlmin: function(text) {
