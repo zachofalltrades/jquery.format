@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1//EN' 'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>jQuery Format</title>
+<meta http-equiv='Content-Type' content='application/xhtml+xml; charset=ISO-8859-1' />
+<link  href='jquery-ui.css' rel='stylesheet' type='text/css'/><!-- 1.10.2 -->
+<script src="jquery.min.js"></script><!-- 1.9.1 -->
+<script src="jquery-ui.min.js"></script><!-- 1.10.2 -->
+<script src='../jquery.format.js'></script>
+<script>
+$(function() {
+    $('#tabs').tabs();
+
+    $('#xml').button().click(function() {
+        $('#xml_text').format({method: 'xml'});
+    });
+    $('#xmlmin').button().click(function() {
+        $('#xml_text').format({method: 'xmlmin'});
+    });
+    $('#xml_load').button().click(function() {
+        getSample('xml', '#xml_text');
+    });
+
+    $('#css').button().click(function() {
+        $('#css_text').format({method: 'css'});
+    });
+    $('#cssmin').button().click(function() {
+        $('#css_text').format({method: 'cssmin'});
+    });
+    $('#css_load').button().click(function() {
+        getSample('css', '#css_text');
+    });
+
+    $('#sql').button().click(function() {
+        $('#sql_text').format({method: 'sql'});
+    });
+    $('#sqlmin').button().click(function() {
+        $('#sql_text').format({method: 'sqlmin'});
+    });
+    $('#sql_load').button().click(function() {
+        getSample('sql', '#sql_text');
+    });
+
+    $('#json').button().click(function() {
+        $('#json_text').format({method: 'json'});
+    });
+    $('#jsonmin').button().click(function() {
+        $('#json_text').format({method: 'jsonmin'});
+    });
+    $('#json_load').button().click(function() {
+        getSample('json', '#json_text');
+    });
+
+	function getSample(extn, id) {
+		$.ajax( {
+			url: 'sample.' + extn,
+			type: 'GET',
+			dataType: 'text',
+			dataFilter: function(data, type) {
+				// console.log(type);
+				// console.log(data);
+			},
+			complete: function(xhr, status) { 
+				// console.log(status);
+				// console.log(xhr);
+				$(id).val(xhr.responseText);
+			}
+		});
+	}
+
+
+});
+</script>
+</head>
+<body>
+
+<div id='tabs'>
+    <ul>
+        <li><a href='#tabs-1'>XML</a></li>
+        <li><a href='#tabs-2'>CSS</a></li>
+        <li><a href='#tabs-3'>SQL</a></li>
+        <li><a href='#tabs-4'>JSON</a></li>
+    </ul>
+    <div id='tabs-1'>
+        <textarea id='xml_text'rows='20' cols='60'></textarea>
+        <br/>
+        <button id='xml'>Pretty Print</button>
+        <button id='xmlmin'>Minimize</button>
+        <button id='xml_load'>Load Sample</button>
+    </div>
+    <div id='tabs-2'>
+        <textarea id='css_text'rows='20' cols='60'></textarea>
+        <br/>
+        <button id='css'>Pretty Print</button>
+        <button id='cssmin'>Minimize</button>
+        <button id='css_load'>Load Sample</button>
+    </div>
+    <div id='tabs-3'>
+        <textarea id='sql_text'rows='20' cols='60'></textarea>
+        <br/>
+        <button id='sql'>Pretty Print</button>
+        <button id='sqlmin'>Minimize</button>
+        <button id='sql_load'>Load Sample</button>
+    </div>
+    <div id='tabs-4'>
+        <textarea id='json_text'rows='20' cols='60'></textarea>
+        <br/>
+        <button id='json'>Pretty Print</button>
+        <button id='jsonmin'>Minimize</button>
+        <button id='json_load'>Load Sample</button>
+    </div>
+</div>
+</body>
+</html>
