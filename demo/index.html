@@ -5,8 +5,8 @@
 <title>jQuery Format</title>
 <meta http-equiv='Content-Type' content='application/xhtml+xml; charset=ISO-8859-1' />
 <link  href='jquery-ui.css' rel='stylesheet' type='text/css'/><!-- 1.10.2 -->
-<script src="jquery.min.js"></script><!-- 1.9.1 -->
-<script src="jquery-ui.min.js"></script><!-- 1.10.2 -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><!-- 1.9.1 -->
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script><!-- 1.10.2 -->
 <script src='../jquery.format.js'></script>
 <script>
 $(function() {
@@ -61,7 +61,7 @@ $(function() {
 				// console.log(type);
 				// console.log(data);
 			},
-			complete: function(xhr, status) { 
+			complete: function(xhr, status) {
 				// console.log(status);
 				// console.log(xhr);
 				$(id).val(xhr.responseText);

@@ -1,1 +1,37 @@
-{"menu":{"id":"file","value":[1, 2, 3],"popup":{"menuitem":[{"value":["one","two"],"onclick":"CreateNewDoc()"},{"value":"Close","onclick":"CloseDoc()"}]}}}
+{
+	"name": "format",
+	"title": "jQuery Format",
+	"version": "0.1.1",
+	"description": "An extensible jQuery plugin to pretty-print or minify text in XML, JSON, CSS and SQL formats",
+	"keywords": [
+		"format",
+		"prettyprint",
+		"pretty-print",
+		"beautify",
+		"indent",
+		"minify",
+		"xml",
+		"css",
+		"json"
+	],
+	"homepage": "https://github.com/zachofalltrades/jquery.format",
+	"docs": "https://github.com/zachofalltrades/jquery.format/blob/master/README.md",
+	"demo": "http://zachofalltrades.github.com/jquery.format/demo/",
+	"author": {
+		"name": "Zach Shelton",
+		"url": "http://zachofalltrades.net"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://opensource.org/licenses/MIT"
+		},
+		{
+			"type": "GPLv3",
+			"url": "http://opensource.org/licenses/GPL-3.0"
+		}
+	],
+	"dependencies": {
+		"jquery": ">=1.5"
+	}
+}
