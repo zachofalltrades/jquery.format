@@ -118,7 +118,7 @@
 			this.shift = createShiftArr(this.step);
 		},
 
-		xml: function(text) {
+		xml: function (text) {
 			var ar = text.replace(/>\s{0,}</g,"><")
 						 .replace(/</g,"~::~<")
 						 .replace(/\s*xmlns\:/g,"~::~xmlns:")
@@ -163,6 +163,15 @@
 				if(ar[ix].search(/<\//) > -1) {
 					str = !inComment ? str += this.shift[--deep]+ar[ix] : str += ar[ix];
 				} else
+			    // xmlns //
+				if( ar[ix].search(/xmlns\:/) > -1  || ar[ix].search(/xmlns\=/) > -1) {
+				    str += this.shift[deep]+ar[ix];
+
+				    // xmlns=''/>
+				    if (ar[ix].search(/\/>/) > -1) {
+				        deep--;
+				    }
+				} else
 				// <elm/> //
 				if(ar[ix].search(/\/>/) > -1 ) {
 					str = !inComment ? str += this.shift[deep]+ar[ix] : str += ar[ix];
@@ -170,12 +179,7 @@
 				// <? xml ... ?> //
 				if(ar[ix].search(/<\?/) > -1) {
 					str += this.shift[deep]+ar[ix];
-				} else
-				// xmlns //
-				if( ar[ix].search(/xmlns\:/) > -1  || ar[ix].search(/xmlns\=/) > -1) {
-					str += this.shift[deep]+ar[ix];
 				}
-
 				else {
 					str += ar[ix];
 				}
